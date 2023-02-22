@@ -72,6 +72,7 @@ const data={
             image:"/Others/NSS2.jpeg",
             desc:"Other hobies"
         }
-    ]
+    ],
+    
 };
 export default data;
