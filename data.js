@@ -23,54 +23,54 @@ const data={
         {
             id:2,
             image:"/Hobies/araku2.jpeg",
-            desc:"Araku",
+            desc:"Kailasgiri",
         },
         {
             id:3,
-            image:"/Hobies/araku3.jpeg",
-            desc:"Araku",
+            image:"/Hobies/image2.jpeg",
+            desc:"Araku Gardens",
         },
         {
             id:4,
             image:"/Hobies/frds.jpeg",
-            desc:"Araku",
+            desc:"VVIT",
         },
         {
             id:5,
             image:"/Hobies/google.jpg",
-            desc:"Araku",
+            desc:"VVIT",
         },
         {
             id:6,
             image:"/Hobies/image1.jpg",
-            desc:"Araku",
+            desc:"Rishikonda",
         },
         {
             id:7,
-            image:"/Hobies/image2.jpeg",
-            desc:"Araku",
+            image:"/Hobies/image3.jpeg",
+            desc:"RK Beach",
         },
         {
             id:8,
-            image:"/Hobies/image3.jpeg",
+            image:"/Hobies/image4.jpeg",
             desc:"Araku",
         },
         {
             id:9,
-            image:"/Hobies/frds.jpeg",
-            desc:"friends",
+            image:"/Hobies/image6.jpeg",
+            desc:"Borra Caves",
         },
     ],
     others:[
         {
             id:1,
             image:"/Others/NSS1.jpeg",
-            desc:"Other hobies"
+            desc:"Social Service"
         },
         {
             id:1,
             image:"/Others/NSS2.jpeg",
-            desc:"Other hobies"
+            desc:"Team Lead"
         }
     ],
     
