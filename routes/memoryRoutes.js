@@ -12,6 +12,7 @@ memrouter.post('/memory',expressasynchandler(async(req,res)=>{
     res.send({
         _id:mem._id,
         name:mem.name,
+        ima:mem.ima,
         des:mem.des,
     });
 }));

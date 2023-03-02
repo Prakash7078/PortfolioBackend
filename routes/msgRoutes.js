@@ -15,6 +15,7 @@ msgRoutes.post('/send',expressAsyncHandler(async(req,res)=>{
         name:msgs.name,
         phone:msgs.phone,
         email:msgs.email,
+        text:msgs.text,
     });
 }));
 export default msgRoutes;
