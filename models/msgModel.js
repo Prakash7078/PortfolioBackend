@@ -3,8 +3,8 @@ const msgSchema=new mongoose.Schema(
     {
         //parameters into product table
         name:{type:String,required:true},
-        phone:{type:Number,required:true,unique:true},
-        email:{type:String,required:true,unique:true},
+        phone:{type:Number,required:true},
+        email:{type:String,required:true},
         text:{type:String,required:true},
        
     },{

@@ -2,6 +2,12 @@ import express from 'express';
 import expressAsyncHandler from 'express-async-handler';
 import msg from '../models/msgModel.js';
 const msgRoutes=express.Router();
+msgRoutes.get('/msg',async(req,res)=>{
+    const Msg=await msg.find();
+    res.send(Msg);
+
+
+})
 msgRoutes.post('/send',expressAsyncHandler(async(req,res)=>{
     const newmsg=new msg({
         name:req.body.name,
