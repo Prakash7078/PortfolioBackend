@@ -9,7 +9,7 @@ memrouter.get('/comments',async(req,res)=>{
 memrouter.post('/memory',expressasynchandler(async(req,res)=>{
     const newmemory=new memory({
         name:req.body.name,
-        des:req.body.des
+        des:req.body.des,
     });
     const mem=await newmemory.save();
     res.send({

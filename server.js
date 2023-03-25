@@ -6,6 +6,8 @@ import msgRoutes from './routes/msgRoutes.js';
 import cors from 'cors';
 import productRouter from './routes/productRoutes.js';
 import memrouter from './routes/memoryRoutes.js';
+import postRouter from './routes/postRoutes.js';
+
 const app=express();
 dotenv.config();
 mongoose.connect(process.env.MONGODB_URL).then(()=>{
@@ -20,6 +22,7 @@ app.use('/api/seed',seedRouter);
 app.use('/api/msgs',msgRoutes);
 app.use('/api/memories',memrouter);
 app.use('/api/products',productRouter);
+app.use('/api/post',postRouter);
 app.use((err,req,res,next)=>{
     res.status(500).send({message:err.message});
 });
