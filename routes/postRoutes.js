@@ -2,7 +2,7 @@ import express from 'express';
 import postModel from '../models/postModel.js';
 const postRouter=express.Router();
 postRouter.get('/certificates',async(req,res)=>{
-    const certificates=await postModel.find({});
+    const certificates=await postModel.find();
     res.send(certificates);
 })
 postRouter.post('/certificate',async(req,res)=>{
