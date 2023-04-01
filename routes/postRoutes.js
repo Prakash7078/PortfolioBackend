@@ -2,7 +2,8 @@ import multer from 'multer';
 import postModel from '../models/postModel.js';
 import express from 'express';
 const postRouter = express.Router();
-const upload = multer({ dest: 'uploads/' }); // specify the destination folder for uploaded files
+const upload = multer({ dest: 'uploads/' });
+ // specify the destination folder for uploaded files
 
 postRouter.get('/certificates', async (req, res) => {
   const certificates = await postModel.find();
@@ -15,7 +16,7 @@ postRouter.post('/certificate', upload.single('selectedFile'), async (req, res) 
     name,
     issue,
     url,
-    selectedFile: req.file.filename, // store the filename in the database instead of the file itself
+    selectedFile: req.selectedFile.filename, // store the filename in the database instead of the file itself
     skills,
   });
   try {
