@@ -1,27 +1,41 @@
-import express from 'express';
-import { Buffer } from 'buffer';
+import multer from 'multer';
 import postModel from '../models/postModel.js';
-const postRouter=express.Router();
+
+const postRouter = express.Router();
+
+// set up multer storage configuration
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/'); // specify the destination folder
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.originalname); // use the original filename
+  }
+});
+
+// initialize multer upload with storage configuration
+const upload = multer({ storage });
 postRouter.get('/certificates',async(req,res)=>{
-    const certificates=await postModel.find();
-    res.send(certificates);
+    const certi=await postModel.find({});
+    res.send(certi);
 })
-postRouter.post('/certificate',async(req,res)=>{
-    
-    const {name,issue,url,selectedFile,skills}=req.body;
-    const fileBuffer = Buffer.from(selectedFile, 'base64');
-    const newCertificate=new postModel({
-        name,
-        issue,
-        url,
-        selectedFile:fileBuffer,
-        skills,
+// define the route to handle file upload
+postRouter.post('/certificate', upload.single('selectedFile'), async (req, res) => {
+  const { name, issue, url, skills } = req.body;
+  const selectedFile = req.file.path;
+
+  try {
+    const newCertificate = new postModel({
+      name,
+      issue,
+      url,
+      selectedFile,
+      skills
     });
-   try{
-        const certi=await newCertificate.save();
-        res.status(201).json(certi);
-   }catch (error) {
-        res.status(409).json({ message: error.message });
-    }
-})
-export default postRouter;
+
+    const certi = await newCertificate.save();
+    res.status(201).json(certi);
+  } catch (error) {
+    res.status(409).json({ message: error.message });
+  }
+});
