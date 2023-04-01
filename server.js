@@ -9,6 +9,12 @@ import memrouter from './routes/memoryRoutes.js';
 import postRouter from './routes/postRoutes.js';
 
 const app=express();
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    next();
+  });
 dotenv.config();
 mongoose.connect(process.env.MONGODB_URL).then(()=>{
     console.log("connect with DB");
@@ -17,7 +23,6 @@ mongoose.connect(process.env.MONGODB_URL).then(()=>{
 })
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
-app.use(cors());
 app.use('/api/seed',seedRouter);
 app.use('/api/msgs',msgRoutes);
 app.use('/api/memories',memrouter);
