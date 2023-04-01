@@ -39,3 +39,4 @@ postRouter.post('/certificate', upload.single('selectedFile'), async (req, res) 
     res.status(409).json({ message: error.message });
   }
 });
+export default postRouter;
