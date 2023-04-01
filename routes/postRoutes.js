@@ -1,6 +1,6 @@
 import multer from 'multer';
 import postModel from '../models/postModel.js';
-
+import express from 'express';
 const postRouter = express.Router();
 
 // set up multer storage configuration
