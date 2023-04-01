@@ -24,13 +24,23 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage });
-
+const checkUploadsFolder = (req, res, next) => {
+    const uploadDir = path.join(process.cwd(), 'uploads');
+    const { filename } = req.file;
+  
+    // Check if the file is saved in the uploads folder
+    if (fs.existsSync(path.join(uploadDir, filename))) {
+      next();
+    } else {
+      res.status(500).send('Error: File not saved in uploads folder');
+    }
+  };
 postRouter.get('/certificates', async (req, res) => {
   const certificates = await postModel.find();
   res.send(certificates);
 });
 
-postRouter.post('/certificate', upload.single('selectedFile'), async (req, res, next) => {
+postRouter.post('/certificate', upload.single('selectedFile'), checkUploadsFolder,async (req, res, next) => {
   const { name, issue, url, skills } = req.body;
   const newCertificate = new postModel({
     name,

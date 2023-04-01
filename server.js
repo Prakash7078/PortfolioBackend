@@ -13,7 +13,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const app=express();
 app.use(cors());
-
+app.use('/uploads', express.static(__dirname + '/uploads'));
 dotenv.config();
 mongoose.connect(process.env.MONGODB_URL).then(()=>{
     console.log("connect with DB");
@@ -27,8 +27,6 @@ app.use('/api/msgs',msgRoutes);
 app.use('/api/memories',memrouter);
 app.use('/api/products',productRouter);
 app.use('/api/post',postRouter);
-app.use('/api/uploads', express.static(path.join(process.cwd(), 'uploads')));
-app.use('/api/uploads', express.static('uploads'));
 app.use((err,req,res,next)=>{
     res.status(500).send({message:err.message});
 });
