@@ -3,12 +3,9 @@ import postModel from '../models/postModel.js';
 import express from 'express';
 import path from 'path';
 import fs from 'fs';
-import { fileURLToPath } from 'url';
-
 const postRouter = express.Router();
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const uploadDir = path.join(__dirname, '../uploads');
+
+const uploadDir = path.join(process.cwd(), 'uploads');
 const upload = multer({ dest: uploadDir });
 const app=express();
 // Make sure the uploads folder exists
