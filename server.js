@@ -27,7 +27,8 @@ app.use('/api/msgs',msgRoutes);
 app.use('/api/memories',memrouter);
 app.use('/api/products',productRouter);
 app.use('/api/post',postRouter);
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/api/uploads', express.static(path.join(process.cwd(), 'uploads')));
+app.use('/api/uploads', express.static('uploads'));
 app.use((err,req,res,next)=>{
     res.status(500).send({message:err.message});
 });

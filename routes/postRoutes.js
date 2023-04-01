@@ -3,15 +3,27 @@ import postModel from '../models/postModel.js';
 import express from 'express';
 import path from 'path';
 import fs from 'fs';
+
 const postRouter = express.Router();
 
 const uploadDir = path.join(process.cwd(), 'uploads');
-const upload = multer({ dest: uploadDir });
-const app=express();
+const app = express();
+
 // Make sure the uploads folder exists
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir);
 }
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, uploadDir);
+  },
+  filename: (req, file, cb) => {
+    cb(null, `${Date.now()}-${file.originalname}`);
+  },
+});
+
+const upload = multer({ storage });
 
 postRouter.get('/certificates', async (req, res) => {
   const certificates = await postModel.find();
