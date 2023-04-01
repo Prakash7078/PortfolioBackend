@@ -1,4 +1,5 @@
 import express from 'express';
+import { Buffer } from 'buffer';
 import postModel from '../models/postModel.js';
 const postRouter=express.Router();
 postRouter.get('/certificates',async(req,res)=>{
@@ -6,12 +7,14 @@ postRouter.get('/certificates',async(req,res)=>{
     res.send(certificates);
 })
 postRouter.post('/certificate',async(req,res)=>{
+    
     const {name,issue,url,selectedFile,skills}=req.body;
+    const fileBuffer = Buffer.from(selectedFile, 'base64');
     const newCertificate=new postModel({
         name,
         issue,
         url,
-        selectedFile,
+        selectedFile:fileBuffer,
         skills,
     });
    try{
