@@ -16,7 +16,7 @@ postRouter.post('/certificate', upload.single('selectedFile'), async (req, res) 
     name,
     issue,
     url,
-    selectedFile: req.file, // store the filename in the database instead of the file itself
+    selectedFile: req.file.filename, // store the filename in the database instead of the file itself
     skills,
   });
   try {

@@ -7,7 +7,10 @@ import cors from 'cors';
 import productRouter from './routes/productRoutes.js';
 import memrouter from './routes/memoryRoutes.js';
 import postRouter from './routes/postRoutes.js';
-
+import path from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const app=express();
 app.use(cors());
 
@@ -24,6 +27,7 @@ app.use('/api/msgs',msgRoutes);
 app.use('/api/memories',memrouter);
 app.use('/api/products',productRouter);
 app.use('/api/post',postRouter);
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use((err,req,res,next)=>{
     res.status(500).send({message:err.message});
 });
