@@ -8,6 +8,7 @@ msgRoutes.get('/msg',async(req,res)=>{
 
 
 })
+
 msgRoutes.post('/send',expressAsyncHandler(async(req,res)=>{
     const newmsg=new msg({
         name:req.body.name,

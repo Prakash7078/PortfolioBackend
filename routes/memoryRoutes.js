@@ -6,6 +6,14 @@ memrouter.get('/comments',async(req,res)=>{
     const comments=await memory.find();
     res.send(comments);
 })
+memrouter.delete('/delete/:id',async(req,res)=>{
+    try{
+        await memory.findByIdAndDelete(req.params.id);
+    }catch(err){
+        console.log(err);
+    }
+
+})
 memrouter.post('/memory',expressasynchandler(async(req,res)=>{
     const newmemory=new memory({
         name:req.body.name,
